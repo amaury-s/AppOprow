@@ -11,7 +11,7 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-page-aide',
   templateUrl: 'page-aide.html'
 })
-export class PageAidePage {
+export class PageAide {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

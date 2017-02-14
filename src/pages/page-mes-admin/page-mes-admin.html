@@ -5,14 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>page_mesAdmin</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img src="assets/images/logo-ppe-seul2.png" alt="logo" height="45" width="45"></ion-title>
   </ion-navbar>
-
 </ion-header>
+<ion-content>
 
+<ion-content>
+  <ion-list no-lines>
 
-<ion-content padding>
+    <ion-item-sliding *ngFor="let name of names">
+      <ion-item (click)="Gopage_affluence(name)">
+        {{name}}<ion-icon name="arrow-forward" class="arrow"></ion-icon>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button (click)="supprimer(item)" id="trash"><ion-icon name="trash"> Supprimer</ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
 
 </ion-content>
+<ion-footer>
+  <button ion-button color="primary" id="add_admin" full ><ion-icon name="add-circle" id='add_circle'></ion-icon> Ajouter une administration</button>
+</ion-footer>

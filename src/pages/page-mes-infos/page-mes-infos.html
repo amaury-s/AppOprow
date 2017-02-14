@@ -5,14 +5,31 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>page_mesInfos</ion-title>
+    <ion-title>Mes infos</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Civilité</ion-label>
+      <ion-select [(ngModel)]="gaming">
+        <ion-option value="M">M</ion-option>
+        <ion-option value="Mme">Mme</ion-option>
+        <ion-option value="Mlle">Mlle</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Nom</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Prénom</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date de naissance</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </ion-list>
 </ion-content>

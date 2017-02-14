@@ -5,14 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>page_monCompte</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img src="assets/images/logo-ppe-seul2.png" alt="logo" height="45" width="45"></ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+  <button ion-button color="primary" large (click)="Gopage_mesinfos()">Mes infos</button>
+  <button ion-button color="primary" large >Mes documents</button>
 </ion-content>

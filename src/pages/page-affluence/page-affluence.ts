@@ -11,7 +11,10 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-page-affluence',
   templateUrl: 'page-affluence.html'
 })
-export class PageAffluencePage {
+export class PageAffluence {
+
+  public date = new Date();
+  public adminId:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

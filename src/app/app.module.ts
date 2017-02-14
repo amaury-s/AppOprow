@@ -1,18 +1,23 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { PageAffluence } from '../pages/page-affluence/page-affluence';
+import { PageAide } from '../pages/page-aide/page-aide';
+import { PageMesAdmin } from '../pages/page-mes-admin/page-mes-admin';
+import { PageMesDemandes } from '../pages/page-mes-demandes/page-mes-demandes';
+import { PageMesInfos } from '../pages/page-mes-infos/page-mes-infos';
+import { PageMonCompte } from '../pages/page-mon-compte/page-mon-compte';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    PageAffluence,
+    PageAide,
+    PageMesAdmin,
+    PageMesDemandes,
+    PageMesInfos,
+    PageMonCompte
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -20,10 +25,12 @@ import { TabsPage } from '../pages/tabs/tabs';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    PageAffluence,
+    PageAide,
+    PageMesAdmin,
+    PageMesDemandes,
+    PageMesInfos,
+    PageMonCompte
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { PageAffluence } from '../../pages/page-affluence/page-affluence';
+
 /*
   Generated class for the PageMesAdmin page.
 
@@ -11,9 +13,19 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-page-mes-admin',
   templateUrl: 'page-mes-admin.html'
 })
-export class PageMesAdminPage {
+export class PageMesAdmin {
+  
+  names = ['Mairie 12', 'Mairie 15'];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  }
+
+  public Gopage_affluence(pAdminId){
+    this.navCtrl.push(PageAffluence,{
+      adminId: pAdminId
+    });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageMesAdminPage');

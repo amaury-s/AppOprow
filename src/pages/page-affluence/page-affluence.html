@@ -7,21 +7,35 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Nom de l'établissement</ion-title>
+    <ion-title>page_affluence</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
 
-  <h1 class="title">Affluence</h1>
+  <h1 class="center">Affluence</h1>
+
+  <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [colors]="colors"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+
   <figure>
-    <img src="images/graph-exemple.png" alt="graphique de l'affluence">
     <figcaption class="center" id="date"><ion-icon name="arrow-back"></ion-icon>{{date}}<ion-icon name="arrow-forward"></ion-icon></figcaption>
   </figure>
-  <p class="center horaire">Horaire optimal : <strong>{{horaire}}</strong></p>
-  <p class="center horaire">Je viens à cet horaire :<br><strong>{{horaire}}</strong></p>
-  <div class="center"><button ion-button block large>J'y vais !</button></div>
+
+  <p class="center"><ion-icon name="arrow-back"></ion-icon>{{date | date:'MM/dd/yyyy'}}<ion-icon name="arrow-forward"></ion-icon></p>
+  <p class="center">Horaire optimal : 13h20</p>
+  <p class="center">Je viens à cet horaire :</p>
+  <p class="center">13h20</p>
 
 </ion-content>

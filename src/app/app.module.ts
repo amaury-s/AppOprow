@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
 import { MyApp } from './app.component';
 import { PageAffluence } from '../pages/page-affluence/page-affluence';
 import { PageAide } from '../pages/page-aide/page-aide';
@@ -7,6 +8,8 @@ import { PageMesAdmin } from '../pages/page-mes-admin/page-mes-admin';
 import { PageMesDemandes } from '../pages/page-mes-demandes/page-mes-demandes';
 import { PageMesInfos } from '../pages/page-mes-infos/page-mes-infos';
 import { PageMonCompte } from '../pages/page-mon-compte/page-mon-compte';
+
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { PageMonCompte } from '../pages/page-mon-compte/page-mon-compte';
     PageMonCompte
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

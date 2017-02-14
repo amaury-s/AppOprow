@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <h1 class="center">Affluence</h1>
 
@@ -28,10 +28,14 @@
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
   </div>
-  <div id="date" class="center"><button ion-button small (click)="decreaseDate()"><ion-icon name="arrow-back"></ion-icon></button> {{dateString}} <button ion-button small (click)="increaseDate()"><ion-icon name="arrow-forward"></ion-icon></button></div>
+  <div id="date" class="center">
+    <button ion-button small (click)="decreaseDate()"><ion-icon name="arrow-back"></ion-icon></button><strong> {{dateString}} </strong><button ion-button small (click)="increaseDate()"><ion-icon name="arrow-forward"></ion-icon></button>
+  </div>
 
-  <p class="center horaire">Horaire optimal : <strong>{{horaire}}</strong></p>
-  <p class="center horaire">Je viens à cet horaire :<br><strong>{{horaire}}</strong></p>
-  <div class="center"><button ion-button block large>J'y vais !</button></div>
+  <div class="center under">
+    <p class="horaire">Horaire optimal : <strong>{{horaire}}</strong></p>
+    <p class="horaire">Je viens à cet horaire :<br><strong>{{horaire}}</strong></p>
+    <div class="center"><button ion-button block large>J'y vais !</button></div>
+  </div>
 
 </ion-content>

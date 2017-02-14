@@ -15,7 +15,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 })
 export class PageAffluence {
 
-  public dateString = giveDate();
+  public dateString = giveDate(new Date());//for the display
+  public date = new Date();//for the back (load the right char...)
   public adminId:any;
   public horaire = "13h20"//for the moment
 
@@ -55,12 +56,24 @@ export class PageAffluence {
     console.log(e);
   }
 
+  public decreaseDate():void {
+  this.changeDate(new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()-1));
+  }
+
+  public increaseDate():void {
+    this.changeDate(new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()+1));
+  }
+
+  public changeDate(date):void{
+    this.date = date;
+    this.dateString = giveDate(date);
+  }
 }
-function giveDate(){
+function giveDate(date):string{
   var dateString
-  var date = new Date()
-  var days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
+  var days = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
   var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
-  dateString = days[date.getDay()-1] + " " + date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
+  dateString = days[date.getDay()] + " " + date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
   return dateString;
 }
+

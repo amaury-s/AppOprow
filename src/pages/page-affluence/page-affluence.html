@@ -28,7 +28,7 @@
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
   </div>
-  <div id="date" class="center"><button ion-button small><ion-icon name="arrow-back"></ion-icon></button>{{dateString}}<button ion-button small><ion-icon name="arrow-forward"></ion-icon></button></div>
+  <div id="date" class="center"><button ion-button small (click)="decreaseDate()"><ion-icon name="arrow-back"></ion-icon></button> {{dateString}} <button ion-button small (click)="increaseDate()"><ion-icon name="arrow-forward"></ion-icon></button></div>
 
   <p class="center horaire">Horaire optimal : <strong>{{horaire}}</strong></p>
   <p class="center horaire">Je viens à cet horaire :<br><strong>{{horaire}}</strong></p>

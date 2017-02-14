@@ -9,14 +9,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><img src="assets/images/logo-ppe-seul2.png" alt="logo" height="45" width="45"></ion-title>
+    <ion-title class="center"><img src="assets/images/logo-ppe-seul2.png" alt="logo" height="45" width="45"></ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
 
 <ion-content>
   <ion-list>
-
     <ion-item-sliding *ngFor="let name of names" class="item_sliding">
         
       <ion-item (click)="Gopage_affluence(names)" class="admin_button">

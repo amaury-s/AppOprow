@@ -13,8 +13,9 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class PageAffluence {
 
-  public date = new Date();
+  public date = giveDate();
   public adminId:any;
+  public horaire = "13h20"//for the moment
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
@@ -22,4 +23,12 @@ export class PageAffluence {
     console.log('ionViewDidLoad PageAffluencePage');
   }
 
+}
+function giveDate(){
+  var dateString
+  var date = new Date()
+  var days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
+  var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+  dateString = days[date.getDay()-1] + " " + date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
+  return dateString;
 }

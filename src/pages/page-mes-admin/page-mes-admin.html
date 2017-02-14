@@ -15,15 +15,25 @@
 <ion-content>
 
 <ion-content>
-  <ion-list no-lines>
+  <ion-list>
 
-    <ion-item-sliding *ngFor="let name of names">
-      <ion-item (click)="Gopage_affluence(name)">
-        {{name}}<ion-icon name="arrow-forward" class="arrow"></ion-icon>
+    <ion-item-sliding *ngFor="let name of names" class="item_sliding">
+        
+      <ion-item (click)="Gopage_affluence(names)" class="admin_button">
+          <div>
+            <p id="nom_admin">{{name}}</p>
+            <p id="temps">{{temps}}XX</p>
+            <p id="attente">Minutes d'attente <br> estimées</p>
+            <p id='horaires'>{{ouverture}}10h - {{fermeture}}25h</p>
+          </div>
+          <div>
+            <ion-icon name="arrow-forward" class="arrow" right class="arrow_icon"></ion-icon>
+          </div>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button (click)="supprimer(item)" id="trash"><ion-icon name="trash"> Supprimer</ion-icon></button>
+        <button ion-button (click)="supprimer(names)" id="trash"><ion-icon name="trash" right> Supprimer</ion-icon></button>
       </ion-item-options>
+  
     </ion-item-sliding>
 
   </ion-list>

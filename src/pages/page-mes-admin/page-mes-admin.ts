@@ -15,7 +15,7 @@ import { PageAffluence } from '../../pages/page-affluence/page-affluence';
 })
 export class PageMesAdmin {
   
-  names = ['Mairie 12', 'Mairie 15'];
+  public names = ['Mairie 12', 'Mairie 15'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
@@ -26,7 +26,9 @@ export class PageMesAdmin {
       adminId: pAdminId
     });
   }
-
+  public supprimer(pAdminId){
+    this.names.splice(pAdminId, 1);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageMesAdminPage');
   }

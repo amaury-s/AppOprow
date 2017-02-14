@@ -1,3 +1,37 @@
-page-page-mes-admin {
-
+.admin_button p{
+    color:blue;
+    
+}
+.admin_button{
+    height: 100px;
+    
+    
+}
+.arrow_icon{
+    position: absolute;
+    top: 40px;
+    height: 20px;
+    right: 20px;
+    
+}
+#nom_admin{
+    font-size:x-large;
+    font-weight:bold;
+}
+#attente{
+    color:#444;
+    position: absolute;
+    left: 60px;
+    top:35px;
+}
+#horaires{
+    font-size: medium;
+    
+}
+#temps{
+    font-size:x-large;
+    margin-bottom: 10px; 
+}
+.item_sliding{
+    border-left: 10px solid red;
 }

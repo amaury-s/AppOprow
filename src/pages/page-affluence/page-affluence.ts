@@ -15,7 +15,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 })
 export class PageAffluence {
 
-  public date = giveDate();
+  public dateString = giveDate();
   public adminId:any;
   public horaire = "13h20"//for the moment
 

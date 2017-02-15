@@ -68,6 +68,7 @@ export class PageAffluence {
   public changeDate(date):void {//It is actually a setMethod for date and dateString
     this.date = date;
     this.dateString = giveDate(date);
+    this.generateGraph(date);
   }
 
   public iGo(horaire):void {
@@ -77,6 +78,25 @@ export class PageAffluence {
     clone[0].data = data;
     this.barChartData = clone;
   }
+  public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
+  let data = [
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100),
+    Math.round(Math.random() * 100)];
+  let clone = JSON.parse(JSON.stringify(this.barChartData));
+  clone[0].data = data;
+  this.barChartData = clone;
+}
 }
 function giveDate(date):string{
   var dateString

@@ -18,7 +18,8 @@ export class PageAffluence {
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
   public adminId:any;
-  public horaire = "13h20"//for the moment
+  public horaireOpti = "13h20"//for the moment
+  public horaireChoose:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule) {}
 
@@ -64,9 +65,17 @@ export class PageAffluence {
     this.changeDate(new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()+1));
   }
 
-  public changeDate(date):void{
+  public changeDate(date):void {//It is actually a setMethod for date and dateString
     this.date = date;
     this.dateString = giveDate(date);
+  }
+
+  public iGo(horaire):void {
+    let data = this.barChartData[0].data;
+    data[horaire-7]++;
+    let clone = JSON.parse(JSON.stringify(this.barChartData));
+    clone[0].data = data;
+    this.barChartData = clone;
   }
 }
 function giveDate(date):string{

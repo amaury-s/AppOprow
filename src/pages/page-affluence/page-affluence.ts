@@ -20,7 +20,8 @@ export class PageAffluence {
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
   public adminId:any;
-  public horaireOpti = "13h20";
+  public horaireOpti = 7//for the moment
+  public horaireOptiString = "7h-8h";
   public horaireChoose:any;
   public barChartData:any[] = [
     {data: [], label: 'Series A'}
@@ -100,6 +101,7 @@ export class PageAffluence {
     let clone = JSON.parse(JSON.stringify(this.barChartData));
     clone[0].data = data;
     this.barChartData = clone;
+    //this.calculateNewHoraire(this.date);//We can put this here to recalculate the horaireOpti but it can change the range of the chart(displayed)
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 

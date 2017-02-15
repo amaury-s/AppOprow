@@ -29,8 +29,15 @@ export class PageAffluence {
 
   public barChartOptions:any = {
     responsive: true,
-    scaleLineColor: 'transparent'
-  };
+    scales: {
+      xAxes: [{
+        categoryPercentage: 1
+      }],
+      yAxes: [{
+        display: false
+      }],
+    }
+  }
 
   public barChartLabels:string[] = ['07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'];
 
@@ -40,7 +47,7 @@ export class PageAffluence {
 
   private colors = [
     {
-      backgroundColor: 'rgba(54, 162, 235, 0.8)'
+      backgroundColor: '#387ef5'
     }
   ];
 

@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+import axios from 'axios';
+
 /*
   Generated class for the PageAffluence page.
 
@@ -18,10 +20,28 @@ export class PageAffluence {
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
   public adminId:any;
-  public horaireOpti = "13h20"//for the moment
+  public horaireOpti = "13h20";
   public horaireChoose:any;
+  public barChartData:any[] = [
+    {data: [], label: 'Series A'}
+  ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule) {
+
+    const _this = this;
+
+    axios.get('http://localhost:8080/admin/12')
+      .then(function (response) {
+        let data = response.data.affluence;
+        let clone = JSON.parse(JSON.stringify(_this.barChartData));
+        clone[0].data = data;
+        _this.barChartData = clone;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageAffluencePage');
@@ -49,10 +69,6 @@ export class PageAffluence {
     {
       backgroundColor: '#387ef5'
     }
-  ];
-
-  public barChartData:any[] = [
-    {data: [12, 18, 15, 20, 18, 23, 26, 20, 19, 16, 17, 16, 12], label: 'Series A'}
   ];
 
   // events
@@ -86,23 +102,19 @@ export class PageAffluence {
     this.barChartData = clone;
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
-  let data = [
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100),
-    Math.round(Math.random() * 100)];
-  let clone = JSON.parse(JSON.stringify(this.barChartData));
-  clone[0].data = data;
-  this.barChartData = clone;
+
+    const _this = this;
+
+    axios.get('http://localhost:8080/admin/12')
+      .then(function (response) {
+        let data = response.data.affluence;
+        let clone = JSON.parse(JSON.stringify(_this.barChartData));
+        clone[0].data = data;
+        _this.barChartData = clone;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 }
 }
 function giveDate(date):string{

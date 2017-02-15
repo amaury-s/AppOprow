@@ -18,10 +18,13 @@ export class PageAffluence {
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
   public adminId:any;
-  public horaireOpti = "13h20"//for the moment
+  public horaireOpti = 7//for the moment
+  public horaireOptiString = "7h-8h";
   public horaireChoose:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule) {
+    this.generateGraph(this.date);
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageAffluencePage');
@@ -52,7 +55,7 @@ export class PageAffluence {
   ];
 
   public barChartData:any[] = [
-    {data: [12, 18, 15, 20, 18, 23, 26, 20, 19, 16, 17, 16, 12], label: 'Series A'}
+    {data: [12, 18, 15, 20, 18, 23, 26, 20, 19, 16, 17, 16, 12], label: 'Series A'}//we don't need this default values anymore
   ];
 
   // events
@@ -84,6 +87,7 @@ export class PageAffluence {
     let clone = JSON.parse(JSON.stringify(this.barChartData));
     clone[0].data = data;
     this.barChartData = clone;
+    //this.calculateNewHoraire(this.date);//We can put this here to recalculate the horaireOpti but it can change the range of the chart(displayed)
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
   let data = [
@@ -103,7 +107,23 @@ export class PageAffluence {
   let clone = JSON.parse(JSON.stringify(this.barChartData));
   clone[0].data = data;
   this.barChartData = clone;
+  this.calculateNewHoraire(date);
 }
+
+  public calculateNewHoraire(date):void{//maybe we won't need date
+    let data = this.barChartData[0].data;
+    for(let i = 0; i < 13; i++){
+      if(data[i] < data[this.horaireOpti-7]){
+        this.horaireOpti = i + 7;
+      }
+    }
+    this.horaireOptiToString();
+  }
+
+  public horaireOptiToString(){
+    var plages = ["7h-8h","8h-9h","9h-10h","10h-11h","11h-12h","12h-13h","13h-14h","14h-15h","15h-16h","16h-17h","17h-18h","18h-19h","19h-20h"];
+    this.horaireOptiString =  plages[this.horaireOpti - 7];
+  }
 }
 function giveDate(date):string{
   var dateString

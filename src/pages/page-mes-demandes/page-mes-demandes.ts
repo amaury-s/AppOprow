@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import axios from 'axios'
+
 /*
   Generated class for the PageMesDemandes page.
 
@@ -13,11 +15,22 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class PageMesDemandes {
 
-    public demandes = [
-        {name: 'Mairie 14', need:'Refaire passeport', date:'Jeudi 32 Janvier', time:'14h30'},
-        {name: 'Mairie 15', need: 'Manger une pomme', date:'Lundi 3 Mai', time:'9h17'}];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+    public demandes = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
+    const _this = this;
+
+    axios.get('http://localhost:8080/asks/list')
+      .then(function (response) {
+        _this.demandes = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageMesDemandesPage');

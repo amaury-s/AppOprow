@@ -13,7 +13,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <button ion-button color="primary" large>Questions Fréquentes</button>
-  <button ion-button color="primary" large>Autres questions</button>
-  <button ion-button color="primary" large>Mes questions et mes réponses</button>
+    <ion-list>
+        <ion-card *ngFor="let topQuestion of topQuestions; let i=index" (click)=toggleAnswer($event,i)>
+            <ion-card-header>
+                {{topQuestion.question}}
+            </ion-card-header>
+        </ion-card>
+    </ion-list>
+    
 </ion-content>

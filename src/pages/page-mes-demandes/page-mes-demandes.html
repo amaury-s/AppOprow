@@ -16,13 +16,15 @@
     <ion-list>
         <ion-card *ngFor="let demande of demandes">
             <ion-card-header id="card_header" text-center>
-              {{demande.name}}
+              {{demande.adminName}}
               <ion-icon name="arrow-forward" class="arrow" right></ion-icon>
             </ion-card-header>
             <ion-card-content>
+
                 <p id="date">{{demande.date}}</p>
                 <p id="time">{{demande.time}}</p>
                 <p id="need">{{demande.need}}</p>
+                
             </ion-card-content>
         </ion-card>
     </ion-list>

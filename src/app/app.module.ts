@@ -8,6 +8,8 @@ import { PageMesAdmin } from '../pages/page-mes-admin/page-mes-admin';
 import { PageMesDemandes } from '../pages/page-mes-demandes/page-mes-demandes';
 import { PageMesInfos } from '../pages/page-mes-infos/page-mes-infos';
 import { PageMonCompte } from '../pages/page-mon-compte/page-mon-compte';
+import { PageAddAdmin} from '../pages/page-add-admin/page-add-admin';
+import { PageHelpMesAdmin} from '../pages/page-help-mes-admin/page-help-mes-admin';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -20,7 +22,9 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     PageMesAdmin,
     PageMesDemandes,
     PageMesInfos,
-    PageMonCompte
+    PageMonCompte,
+    PageAddAdmin,
+    PageHelpMesAdmin
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -34,7 +38,9 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     PageMesAdmin,
     PageMesDemandes,
     PageMesInfos,
-    PageMonCompte
+    PageMonCompte,
+    PageAddAdmin,
+    PageHelpMesAdmin
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

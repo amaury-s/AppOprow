@@ -10,6 +10,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Mes demandes</ion-title>
+    <ion-icon name="information-circle" id="help_button" (click)="Gopage_help_mesadmin()"></ion-icon>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -20,11 +21,8 @@
               <ion-icon name="arrow-forward" class="arrow" right></ion-icon>
             </ion-card-header>
             <ion-card-content>
-
-                <p id="date">{{demande.date}}</p>
-                <p id="time">{{demande.time}}</p>
-                <p id="need">{{demande.need}}</p>
-                
+                <p id="time">{{demande.arrivalTime | date : 'EEEE dd MMMM yyyy h:mm'}}</p>
+                <p id="need">{{demande.serviceName}}</p>
             </ion-card-content>
         </ion-card>
     </ion-list>

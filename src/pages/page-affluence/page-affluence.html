@@ -7,7 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>page_affluence</ion-title>
+    <ion-title>Nom de l'admin</ion-title>
+    <ion-icon name="information-circle" id="help_button" (click)="Gopage_help_mesadmin()"></ion-icon>
   </ion-navbar>
 
 </ion-header>
@@ -33,7 +34,7 @@
   </div>
 
   <div class="center under">
-    <p class="horaire">Horaire optimal : <strong>{{horaireOptiString}}</strong></p>
+    <p class="horaire">Horaire Optimal : <strong>{{horaireOptiString}}</strong></p>
     <p class="horaire">Je viens à cet horaire :</p>
     <ion-item>
       <ion-label>Entre</ion-label>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -16,6 +17,8 @@ import axios from 'axios';
   templateUrl: 'page-affluence.html'
 })
 export class PageAffluence {
+
+  public admin;
 
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
@@ -42,10 +45,17 @@ export class PageAffluence {
         console.log(error);
       });
 
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageAffluencePage');
+  }
+
+  public Gopage_help_mesadmin(){
+    this.navCtrl.push(PageHelpMesAdmin);
+
   }
 
   public barChartOptions:any = {

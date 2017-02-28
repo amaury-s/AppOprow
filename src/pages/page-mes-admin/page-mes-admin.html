@@ -10,18 +10,18 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title class="center"><img src="assets/images/logo-ppe-seul2.png" alt="logo" height="45" width="45"></ion-title>
+    <ion-icon name="information-circle" id="help_button" (click)="Gopage_help_mesadmin()"></ion-icon>
   </ion-navbar>
 </ion-header>
 <ion-content>
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let name of names" class="item_sliding">
-        
-      <ion-item (click)="Gopage_affluence(names)" class="admin_button">
+    <ion-item-sliding *ngFor="let admin of admins" class="item_sliding">
+      <ion-item (click)="Gopage_affluence(admin.id)" class="admin_button">
           <div>
-            <p id="nom_admin">{{name}}</p>
-            <p id="temps">{{temps}}XX</p>
+            <p id="nom_admin">{{admin.name}}</p>
+            <p id="temps">XX</p>
             <p id="attente">Minutes d'attente <br> estimées</p>
             <p id='horaires'>{{ouverture}}10h - {{fermeture}}25h</p>
           </div>
@@ -32,12 +32,11 @@
       <ion-item-options side="right">
         <button ion-button (click)="supprimer(names)" id="trash"><ion-icon name="trash" right> Supprimer</ion-icon></button>
       </ion-item-options>
-  
     </ion-item-sliding>
 
   </ion-list>
 
 </ion-content>
 <ion-footer>
-  <button ion-button color="primary" id="add_admin" full ><ion-icon name="add-circle" id='add_circle'></ion-icon> Ajouter une administration</button>
+  <button ion-button color="primary" id="add_admin" full (click)="Gopage_add_admin()"><ion-icon name="add-circle" id="add_circle"></ion-icon> Ajouter une administration</button>
 </ion-footer>

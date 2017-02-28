@@ -40,7 +40,7 @@ export class PageMesAdmin {
       adminId: pAdminId
     });
   }
-  public supprimer(pAdminId){
+  public supprimer(adminId){
 
   }
   public Gopage_add_admin(){

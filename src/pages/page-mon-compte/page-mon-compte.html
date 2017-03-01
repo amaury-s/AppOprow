@@ -1,5 +1,5 @@
 <!--
-  Generated template for the PageMonCompte page.
+  Generated template for the PageMesInfos page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -9,11 +9,31 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><img src="assets/images/logo-ppe-seul2.png" alt="logo" height="45" width="45"></ion-title>
+    <ion-title>Mon compte</ion-title>
     <ion-icon name="information-circle" id="help_button" (click)="Gopage_help_mesadmin()"></ion-icon>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <button ion-button color="primary" large (click)="Gopage_mesinfos()">Mes infos</button>
-  <button ion-button color="primary" large >Mes documents</button>
+  <ion-list>
+    <ion-item>
+      <ion-label>Civilité</ion-label>
+      <ion-select [(ngModel)]="gaming">
+        <ion-option value="M">M</ion-option>
+        <ion-option value="Mme">Mme</ion-option>
+        <ion-option value="Mlle">Mlle</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Nom</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Prénom</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date de naissance</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -8,15 +8,15 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-page-mes-infos',
-  templateUrl: 'page-mes-infos.html'
+  selector: 'page-page-mes-documents',
+  templateUrl: 'page-mes-documents.html'
 })
-export class PageMesInfos {
+export class PageMesDocuments {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PageMesInfosPage');
+    console.log('ionViewDidLoad PageMesDocumentsPage');
   }
 
 }

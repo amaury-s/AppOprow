@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import {PageMesInfos} from '../page-mes-infos/page-mes-infos'
 import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
 /*
   Generated class for the PageMonCompte page.
@@ -21,9 +20,6 @@ export class PageMonCompte {
     console.log('ionViewDidLoad PageMonComptePage');
   }
 
-  public Gopage_mesinfos(){
-    this.navCtrl.push(PageMesInfos);
-  }
   public Gopage_help_mesadmin(){
     this.navCtrl.push(PageHelpMesAdmin);
 

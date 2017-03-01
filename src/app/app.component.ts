@@ -8,6 +8,8 @@ import { PageMesAdmin } from '../pages/page-mes-admin/page-mes-admin';
 import { PageMesDemandes } from '../pages/page-mes-demandes/page-mes-demandes';
 import { PageMesInfos } from '../pages/page-mes-infos/page-mes-infos';
 import { PageMonCompte } from '../pages/page-mon-compte/page-mon-compte';
+import { PageMesDocuments } from '../pages/page-mes-documents/page-mes-documents';
+import { PageMonQrcode } from '../pages/page-mon-qrcode/page-mon-qrcode';
 
 
 @Component({
@@ -25,7 +27,9 @@ export class MyApp {
     this.pages = [
       { title: 'Mes Administrations', component: PageMesAdmin },
       { title: 'Mes demandes', component: PageMesDemandes },
+      { title: 'Mes documents', component:  PageMesDocuments},
       { title: 'Mon compte', component:  PageMonCompte},
+      { title: 'Mon QR code', component:  PageMonQrcode},
       { title: 'Aide', component:  PageAide}
 
     ];

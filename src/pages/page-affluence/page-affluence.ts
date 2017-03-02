@@ -101,7 +101,6 @@ export class PageAffluence {
     let clone = JSON.parse(JSON.stringify(this.barChartData));
     clone[0].data = data;
     this.barChartData = clone;
-    //this.calculateNewHoraire(this.date);//We can put this here to recalculate the horaireOpti but it can change the range of the chart(displayed)
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 

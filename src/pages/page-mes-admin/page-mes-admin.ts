@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { PageAffluence } from '../../pages/page-affluence/page-affluence';
+import { PageAddAdmin} from "../page-add-admin/page-add-admin";
+import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
+
+import axios from 'axios'
 
 /*
   Generated class for the PageMesAdmin page.
@@ -14,10 +18,20 @@ import { PageAffluence } from '../../pages/page-affluence/page-affluence';
   templateUrl: 'page-mes-admin.html'
 })
 export class PageMesAdmin {
-  
-  public names = ['Mairie 12', 'Mairie 15'];
+
+  public admins = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    const _this = this;
+
+    axios.get('http://localhost:8080/admin/list')
+      .then(function (response) {
+        _this.admins = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
   }
 
@@ -26,8 +40,15 @@ export class PageMesAdmin {
       adminId: pAdminId
     });
   }
-  public supprimer(pAdminId){
-    this.names.splice(pAdminId, 1);
+  public supprimer(adminId){
+
+  }
+  public Gopage_add_admin(){
+    this.navCtrl.push(PageAddAdmin);
+  }
+  public Gopage_help_mesadmin(){
+    this.navCtrl.push(PageHelpMesAdmin);
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageMesAdminPage');

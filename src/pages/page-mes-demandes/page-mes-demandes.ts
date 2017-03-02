@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
 
 import axios from 'axios'
 
@@ -16,10 +17,10 @@ import axios from 'axios'
 export class PageMesDemandes {
 
 
-    public demandes = [];
+  public demandes = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
+
     const _this = this;
 
     axios.get('http://localhost:8080/asks/list')
@@ -29,6 +30,10 @@ export class PageMesDemandes {
       .catch(function (error) {
         console.log(error);
       });
+
+  }
+  public Gopage_help_mesadmin(){
+    this.navCtrl.push(PageHelpMesAdmin);
 
   }
 

@@ -1,18 +1,18 @@
 .admin_button p{
     color:blue;
-    
+
 }
 .admin_button{
     height: 100px;
-    
-    
+
+
 }
-.arrow_icon{
+#arrow_icon{
     position: absolute;
     top: 40px;
     height: 20px;
     right: 20px;
-    
+
 }
 #nom_admin{
     font-size:x-large;
@@ -26,12 +26,19 @@
 }
 #horaires{
     font-size: medium;
-    
+
 }
 #temps{
     font-size:x-large;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 .item_sliding{
     border-left: 10px solid red;
+}
+#help_button{
+  font-size:30px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: blue;
 }

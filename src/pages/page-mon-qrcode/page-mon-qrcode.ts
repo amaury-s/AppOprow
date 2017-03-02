@@ -9,17 +9,16 @@ import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-a
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-page-mon-compte',
-  templateUrl: 'page-mon-compte.html'
+  selector: 'page-page-mon-qrcode',
+  templateUrl: 'page-mon-qrcode.html'
 })
-export class PageMonCompte {
+export class PageMonQrcode {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PageMonComptePage');
+    console.log('ionViewDidLoad PageMonQrcodePage');
   }
-
   public Gopage_help_mesadmin(){
     this.navCtrl.push(PageHelpMesAdmin);
 

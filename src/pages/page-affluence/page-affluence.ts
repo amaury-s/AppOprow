@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams, AlertController} from 'ionic-angular';
 import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -18,35 +18,33 @@ import axios from 'axios';
 })
 export class PageAffluence {
 
-  public admin;
+  public admin = {};
 
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
-  public adminId:any;
+  public adminId; // While we don't give it from the admin chosen
   public horaireOpti = 7//for the moment
   public horaireOptiString = "7h-8h";
+  public serviceChoose:any;
   public horaireChoose:any;
   public barChartData:any[] = [
     {data: [], label: 'Series A'}
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule,private alertCtrl: AlertController) {
+    this.adminId = navParams.get("adminId");
     const _this = this;
 
-    axios.get('http://localhost:8080/admin/12')
+    axios.get('http://localhost:8080/admin/' + this.adminId)
       .then(function (response) {
-        let data = response.data.affluence;
-        let clone = JSON.parse(JSON.stringify(_this.barChartData));
-        clone[0].data = data;
-        _this.barChartData = clone;
+        _this.admin = response.data
+        console.log(_this.admin)
       })
       .catch(function (error) {
         console.log(error);
       });
 
-
-
+    console.log("Data loaded");
   }
 
   ionViewDidLoad() {
@@ -105,12 +103,19 @@ export class PageAffluence {
     this.generateGraph(date);
   }
 
-  public iGo(horaire):void {
-    let data = this.barChartData[0].data;
+  public iGo(horaire, serviceId):void {
+    /*let data = this.barChartData[0].data;
     data[horaire-7]++;
     let clone = JSON.parse(JSON.stringify(this.barChartData));
     clone[0].data = data;
-    this.barChartData = clone;
+    this.barChartData = clone;*/
+    //this.presentAlert();
+    //this.navCtrl.push(PageJyVais);
+    axios.post('http://localhost:8080/ask/add', {adminId:this.adminId, userId:1, serviceId:serviceId, arrivalTime:'2017-10-5T0:0:0.10Z', endWaitingTIme:'2017-10-5T0:0:0.10Z',departureTime:'2017-10-5T0:0:0.10Z',dayOfWeek:5})
+      .then(function () {
+        console.log("done")
+      });
+    console.log('request done');
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 
@@ -126,7 +131,7 @@ export class PageAffluence {
       .catch(function (error) {
         console.log(error);
       });
-}
+  }
 }
 function giveDate(date):string{
   var dateString

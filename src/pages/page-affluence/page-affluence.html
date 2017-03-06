@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Nom de l'admin</ion-title>
+    <ion-title>{{admin.name}}</ion-title>
     <ion-icon name="information-circle" id="help_button" (click)="Gopage_help_mesadmin()"></ion-icon>
   </ion-navbar>
 
@@ -58,7 +58,7 @@
     <ion-item>
       <ion-label>Service</ion-label>
       <ion-select [(ngModel)]="serviceChoose">
-        <ion-option *ngFor="let demande of demandes">{{demande.name}}</ion-option>
+        <ion-option *ngFor="let service of admin.listOfServices">{{service.serviceName}}</ion-option>
       </ion-select>
     </ion-item>
 

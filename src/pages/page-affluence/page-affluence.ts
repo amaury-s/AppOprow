@@ -18,11 +18,11 @@ import axios from 'axios';
 })
 export class PageAffluence {
 
-  public admin;
+  public admin = {};
 
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
-  public adminId:any;
+  public adminId; // While we don't give it from the admin chosen
   public horaireOpti = 7//for the moment
   public horaireOptiString = "7h-8h";
   public serviceChoose:any;
@@ -31,26 +31,14 @@ export class PageAffluence {
     {data: [], label: 'Series A'}
   ];
 
-  public demandes = [];
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule,private alertCtrl: AlertController) {
-
+    this.adminId = navParams.get("adminId");
     const _this = this;
 
-    axios.get('http://localhost:8080/admin/12')
+    axios.get('http://localhost:8080/admin/' + this.adminId)
       .then(function (response) {
-        let data = response.data.affluence;
-        let clone = JSON.parse(JSON.stringify(_this.barChartData));
-        clone[0].data = data;
-        _this.barChartData = clone;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-    axios.get('http://localhost:8080/service/list/1')
-      .then(function (response) {
-        _this.demandes = response.data
+        _this.admin = response.data
+        console.log(_this.admin)
       })
       .catch(function (error) {
         console.log(error);
@@ -123,11 +111,11 @@ export class PageAffluence {
     this.barChartData = clone;*/
     //this.presentAlert();
     //this.navCtrl.push(PageJyVais);
-    /*axios.post('http://localhost:8080/ask/add', {adminId:1, userId:1, serviceId:serviceId, arrivalTime:, endWaitingTIme:,departureTime:,dayOfWeek:5})
+    axios.post('http://localhost:8080/ask/add', {adminId:this.adminId, userId:1, serviceId:serviceId, arrivalTime:'2017-10-5T0:0:0.10Z', endWaitingTIme:'2017-10-5T0:0:0.10Z',departureTime:'2017-10-5T0:0:0.10Z',dayOfWeek:5})
       .then(function () {
         console.log("done")
       });
-    console.log('request done');*/
+    console.log('request done');
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 
@@ -144,37 +132,6 @@ export class PageAffluence {
         console.log(error);
       });
   }
-  /*presentAlert() {
-    for(let entry of this.demandes){
-
-    }
-    console.log(this.demandes);
-    let alert = this.alertCtrl.create({
-      title: 'Choisissez vos besoins',
-
-      buttons: [
-        {
-          text: this.demandes[0]["serviceName"],
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: this.demandes[1]["serviceName"],
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Buy',
-          handler: () => {
-            console.log('Buy clicked');
-          }
-        }
-      ]
-    });
-    alert.present();
-  }*/
 }
 function giveDate(date):string{
   var dateString

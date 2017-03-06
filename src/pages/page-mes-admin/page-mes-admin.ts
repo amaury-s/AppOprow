@@ -33,6 +33,7 @@ export class PageMesAdmin {
         console.log(error);
       });
 
+
   }
 
   public Gopage_affluence(pAdminId){
@@ -50,7 +51,21 @@ export class PageMesAdmin {
     this.navCtrl.push(PageHelpMesAdmin);
 
   }
-  ionViewDidLoad() {
+
+  public getColor(){
+    var ouverture = new Date("February 4, 2017 10:13:00");
+    var fermeture = new Date("March 1, 2017 20:13:00");
+    var date = new Date();
+    if(date>ouverture && date<fermeture){
+      return "green_id";
+    }else{
+      return "red_id";
+    }
+  }
+
+
+
+  ionViewDidLoad(){
     console.log('ionViewDidLoad PageMesAdminPage');
   }
 

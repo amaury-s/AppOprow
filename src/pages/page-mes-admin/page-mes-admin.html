@@ -14,10 +14,8 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-
-<ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let admin of admins" class="item_sliding">
+    <ion-item-sliding *ngFor="let admin of admins" id="{{getColor()}}" >
       <ion-item (click)="Gopage_affluence(admin.id)" class="admin_button">
           <div>
             <p id="nom_admin">{{admin.name}}</p>
@@ -33,9 +31,7 @@
         <button ion-button (click)="supprimer()" id="trash"><ion-icon name="trash" right> Supprimer</ion-icon></button>
       </ion-item-options>
     </ion-item-sliding>
-
   </ion-list>
-
 </ion-content>
 <ion-footer>
   <button ion-button color="primary" id="add_admin" full (click)="Gopage_add_admin()"><ion-icon name="add-circle" id="add_circle"></ion-icon> Ajouter une administration</button>

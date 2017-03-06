@@ -18,7 +18,7 @@
         <ion-card *ngFor="let demande of demandes">
             <ion-card-header id="card_header" text-center>
               {{demande.adminName}}
-              <ion-icon name="arrow-forward" class="arrow" right></ion-icon>
+              <ion-icon name="close-circle" id="closecircle" right (click)="confirm()"></ion-icon>
             </ion-card-header>
             <ion-card-content>
                 <p id="time">{{demande.arrivalTime | date : 'EEEE dd MMMM yyyy h:mm'}}</p>

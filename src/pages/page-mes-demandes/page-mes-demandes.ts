@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController} from 'ionic-angular';
 import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
 
 import axios from 'axios'
@@ -19,7 +19,7 @@ export class PageMesDemandes {
 
   public demandes = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
 
     const _this = this;
 
@@ -36,9 +36,27 @@ export class PageMesDemandes {
     this.navCtrl.push(PageHelpMesAdmin);
 
   }
-
-  ionViewDidLoad() {
+  public confirm(){
+      let alert = this.alertCtrl.create({
+        message: 'Voulez vous vraiment supprimer votre demande ?',
+        buttons: [
+          {
+            text: 'Oui',
+            handler: () => {
+              console.log('Oui clicked');
+            }
+          },
+          {
+            text: 'Annuler',
+            handler: () => {
+              console.log('Annuler clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  ionViewDidLoad(){
     console.log('ionViewDidLoad PageMesDemandesPage');
   }
-
 }

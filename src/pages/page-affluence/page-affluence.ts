@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams, AlertController} from 'ionic-angular';
 import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -25,12 +25,15 @@ export class PageAffluence {
   public adminId:any;
   public horaireOpti = 7//for the moment
   public horaireOptiString = "7h-8h";
+  public serviceChoose:any;
   public horaireChoose:any;
   public barChartData:any[] = [
     {data: [], label: 'Series A'}
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule) {
+  public demandes = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public chartsModule: ChartsModule,private alertCtrl: AlertController) {
 
     const _this = this;
 
@@ -45,8 +48,15 @@ export class PageAffluence {
         console.log(error);
       });
 
+    axios.get('http://localhost:8080/service/list/1')
+      .then(function (response) {
+        _this.demandes = response.data
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-
+    console.log("Data loaded");
   }
 
   ionViewDidLoad() {
@@ -105,12 +115,19 @@ export class PageAffluence {
     this.generateGraph(date);
   }
 
-  public iGo(horaire):void {
-    let data = this.barChartData[0].data;
+  public iGo(horaire, serviceId):void {
+    /*let data = this.barChartData[0].data;
     data[horaire-7]++;
     let clone = JSON.parse(JSON.stringify(this.barChartData));
     clone[0].data = data;
-    this.barChartData = clone;
+    this.barChartData = clone;*/
+    //this.presentAlert();
+    //this.navCtrl.push(PageJyVais);
+    /*axios.post('http://localhost:8080/ask/add', {adminId:1, userId:1, serviceId:serviceId, arrivalTime:, endWaitingTIme:,departureTime:,dayOfWeek:5})
+      .then(function () {
+        console.log("done")
+      });
+    console.log('request done');*/
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 
@@ -126,7 +143,38 @@ export class PageAffluence {
       .catch(function (error) {
         console.log(error);
       });
-}
+  }
+  /*presentAlert() {
+    for(let entry of this.demandes){
+
+    }
+    console.log(this.demandes);
+    let alert = this.alertCtrl.create({
+      title: 'Choisissez vos besoins',
+
+      buttons: [
+        {
+          text: this.demandes[0]["serviceName"],
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: this.demandes[1]["serviceName"],
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Buy',
+          handler: () => {
+            console.log('Buy clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }*/
 }
 function giveDate(date):string{
   var dateString

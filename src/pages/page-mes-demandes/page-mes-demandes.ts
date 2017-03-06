@@ -23,7 +23,7 @@ export class PageMesDemandes {
 
     const _this = this;
 
-    axios.get('http://localhost:8080/asks/list')
+    axios.get('http://localhost:8080/asks/list/1')
       .then(function (response) {
         _this.demandes = response.data;
       })

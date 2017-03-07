@@ -40,6 +40,9 @@ export class PageMesDemandes {
       let alert = this.alertCtrl.create({
         message: 'Voulez vous vraiment supprimer votre demande ?',
         buttons: [
+
+
+
           {
             text: 'Oui',
             handler: () => {

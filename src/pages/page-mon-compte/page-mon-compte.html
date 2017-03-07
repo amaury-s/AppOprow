@@ -17,23 +17,24 @@
   <ion-list>
     <ion-item>
       <ion-label>Civilité</ion-label>
-      <ion-select [(ngModel)]="gaming">
-        <ion-option value="M">M</ion-option>
-        <ion-option value="Mme">Mme</ion-option>
-        <ion-option value="Mlle">Mlle</ion-option>
+      <ion-select [(ngModel)] =info.gender>
+        <ion-option value="1">M</ion-option>
+        <ion-option value="2">Mme</ion-option>
+        <ion-option value="3">Mlle</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label stacked>Nom</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" value="{{info.surname}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Prénom</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" value="{{info.name}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Date de naissance</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="info.birthDate"></ion-datetime>
     </ion-item>
   </ion-list>
+  <pre>{{info.birthDate | date: 'dd/MM/yyyy'}}</pre>
 </ion-content>

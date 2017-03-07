@@ -111,11 +111,14 @@ export class PageAffluence {
     this.barChartData = clone;*/
     //this.presentAlert();
     //this.navCtrl.push(PageJyVais);
-    axios.post('http://localhost:8080/ask/add', {adminId:this.adminId, userId:1, serviceId:serviceId, arrivalTime:'2017-10-5T0:0:0.10Z', endWaitingTIme:'2017-10-5T0:0:0.10Z',departureTime:'2017-10-5T0:0:0.10Z',dayOfWeek:5})
+    let date = this.date.getFullYear() + "-" + this.date.getMonth() + "-" + this.date.getDate() + "T" + horaire + ".10Z";
+    console.log(date);
+    axios.post('http://localhost:8080/asks/add', {"adminId":this.adminId, "userId":1, "serviceId":serviceId, "arrivalTime":date, "endWaitingTIme":'2017-10-5 5:0:0',"departureTime":'2017-10-5T0:0:0.10Z',"dayOfWeek":this.date.getDay()})// we still have to change the dates
       .then(function () {
-        console.log("done")
       });
-    console.log('request done');
+  }
+  public confirmIGo():void{
+
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 
@@ -140,4 +143,3 @@ function giveDate(date):string{
   dateString = days[date.getDay()] + " " + date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
   return dateString;
 }
-

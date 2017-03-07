@@ -39,26 +39,26 @@
     <ion-item>
       <ion-label>Entre</ion-label>
       <ion-select [(ngModel)]="horaireChoose">
-        <ion-option value=7>7h et 8h</ion-option>
-        <ion-option value=8>8h et 9h</ion-option>
-        <ion-option value=9>9h et 10h</ion-option>
-        <ion-option value=10>10h et 11h</ion-option>
-        <ion-option value=11>11h et 12h</ion-option>
-        <ion-option value=12>12h et 13h</ion-option>
-        <ion-option value=13>13h et 14h</ion-option>
-        <ion-option value=14>14h et 15h</ion-option>
-        <ion-option value=15>15h et 16h</ion-option>
-        <ion-option value=16>16h et 17h</ion-option>
-        <ion-option value=17>17h et 18h</ion-option>
-        <ion-option value=18>18h et 19h</ion-option>
-        <ion-option value=19>19h et 20h</ion-option>
+        <ion-option value="07:00:00">7h et 8h</ion-option>
+        <ion-option value="08:00:00">8h et 9h</ion-option>
+        <ion-option value="09:00:00">9h et 10h</ion-option>
+        <ion-option value="10:00:00">10h et 11h</ion-option>
+        <ion-option value="11:00:00">11h et 12h</ion-option>
+        <ion-option value="12:00:00">12h et 13h</ion-option>
+        <ion-option value="13:00:00">13h et 14h</ion-option>
+        <ion-option value="14:00:00">14h et 15h</ion-option>
+        <ion-option value="15:00:00">15h et 16h</ion-option>
+        <ion-option value="16:00:00">16h et 17h</ion-option>
+        <ion-option value="17:00:00">17h et 18h</ion-option>
+        <ion-option value="18:00:00">18h et 19h</ion-option>
+        <ion-option value="19:00:00">19h et 20h</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Service</ion-label>
       <ion-select [(ngModel)]="serviceChoose">
-        <ion-option *ngFor="let service of admin.listOfServices">{{service.serviceName}}</ion-option>
+        <ion-option *ngFor="let service of admin.listOfServices" value="{{service.serviceId}}">{{service.serviceName}}</ion-option>
       </ion-select>
     </ion-item>
 

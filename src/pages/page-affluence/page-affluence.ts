@@ -105,7 +105,7 @@ export class PageAffluence {
     this.generateGraph(date);
   }
 
-  public iGo(horaire, serviceId):void {
+  public iGo():void {
     /*let data = this.barChartData[0].data;
     data[horaire-7]++;
     let clone = JSON.parse(JSON.stringify(this.barChartData));
@@ -113,23 +113,22 @@ export class PageAffluence {
     this.barChartData = clone;*/
     //this.presentAlert();
     //this.navCtrl.push(PageJyVais);
-    let date = this.date.setHours(horaire,0,0);
+    let date = this.date.setHours(this.horaireChoose,0,0);
     console.log(date);
-    axios.post('http://localhost:8080/asks/add', {"adminId":this.adminId, "userId":1, "serviceId":serviceId, "arrivalTime":this.date.getTime(), "endWaitingTIme":'2017-10-5 5:0:0',"departureTime":'2017-10-5T0:0:0.10Z',"dayOfWeek":this.date.getDay()})// we still have to change the dates
+    axios.post('http://localhost:8080/asks/add', {"adminId":this.adminId, "userId":1, "serviceId":this.serviceChoose, "arrivalTime":this.date.getTime(), "endWaitingTIme":'2017-10-5 5:0:0',"departureTime":'2017-10-5T0:0:0.10Z',"dayOfWeek":this.date.getDay()})// we still have to change the dates
       .then(function () {
       });
   }
-  public confirmIGo(horaire, serviceId):void{
-    let horairePlus = parseInt(horaire) + 1;
+  public confirmIGo():void{
     let alert = this.alertCtrl.create({
       title: 'Voulez vous vraiment venir à cet horaire ?',
-      message: 'Je viens entre ' + horaire + 'h et ' + horairePlus + 'h.',
+      message: 'Je viens entre ' + this.horaireChoose + 'h et ' + (parseInt(this.horaireChoose) + 1) + 'h.',
       buttons: [
         {
           text: 'Confirmer',
           handler: () => {
             console.log('Oui clicked');
-            this.iGo(horaire, serviceId)
+            this.iGo()
           }
         },
         {

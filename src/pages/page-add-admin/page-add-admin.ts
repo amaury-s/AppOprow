@@ -17,6 +17,7 @@ import axios from 'axios'
 export class PageAddAdmin {
   private admins: any[];
   private search: string = '';
+  private pIdUser: number = 1;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 

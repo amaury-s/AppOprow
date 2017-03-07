@@ -15,7 +15,7 @@
   <ion-searchbar type="text" [(ngModel)]="search"></ion-searchbar>
 
   <ion-list>
-    <ion-item *ngFor="let item of items | searchPipe: search">
+    <ion-item *ngFor="let item of admins | searchPipe: search" (click)="Add_Favorite_Admin(admin.id)">
       {{ item }}
     </ion-item>
   </ion-list>

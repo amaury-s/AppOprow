@@ -16,7 +16,7 @@
 
   <ion-list>
     <ion-item *ngFor="let item of admins | searchPipe: search" (click)="Add_Favorite_Admin(admin.id)">
-      {{ item }}
+      {{ item.name }}
     </ion-item>
   </ion-list>
 </ion-content>

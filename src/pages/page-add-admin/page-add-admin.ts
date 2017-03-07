@@ -15,7 +15,7 @@ import axios from 'axios'
   templateUrl: 'page-add-admin.html'
 })
 export class PageAddAdmin {
-  private admins: any[];
+  private admins: any[] = [];
   private search: string = '';
   private pIdUser: number = 1;
 
@@ -49,6 +49,7 @@ export class PageAddAdmin {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageAddAdminPage');
   }
+
   public Gopage_help_mesadmin(){
     this.navCtrl.push(PageHelpMesAdmin);
 

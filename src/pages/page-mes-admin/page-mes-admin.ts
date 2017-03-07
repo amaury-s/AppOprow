@@ -20,12 +20,12 @@ import axios from 'axios'
 export class PageMesAdmin {
 
   public admins = [];
+  public pIdUser = 1;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     const _this = this;
-
-    axios.get('http://localhost:8080/admin/list')
+    axios.get('http://localhost:8080/admin/list/' + _this.pIdUser)
       .then(function (response) {
         _this.admins = response.data;
       })
@@ -35,15 +35,28 @@ export class PageMesAdmin {
 
 
   }
+  public delete_admin(pIndex, pIdAdmin){
+    console.log('delete admin');
+    console.log(pIndex);
+    var req = 'http://localhost:8080/admin/delete/' + this.pIdUser + '/' + pIdAdmin;
+    const _this = this;
+    console.log(req)
+    axios.post(req)
+      .then(function (response) {
+        console.log(response);
+        _this.admins.splice(pIndex, 1);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   public Gopage_affluence(pAdminId){
     this.navCtrl.push(PageAffluence,{
       adminId: pAdminId
     });
   }
-  public supprimer(adminId){
 
-  }
   public Gopage_add_admin(){
     this.navCtrl.push(PageAddAdmin);
   }

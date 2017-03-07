@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-admin';
 
+import axios from 'axios'
+
 /*
   Generated class for the PageMonCompte page.
 
@@ -15,9 +17,33 @@ import { PageHelpMesAdmin} from '../../pages/page-help-mes-admin/page-help-mes-a
 export class PageAddAdmin {
   private searchQuery: string = '';
   private items: string[];
+  public pIdUser = 1;
+  public admins = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.initializeItems();
+
+    const _this = this;
+    axios.get('http://localhost:8080/admin/list/')
+      .then(function (response) {
+        _this.admins = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  public Add_Favorite_Admin(pIdAdmin){
+      console.log('add favorite admin');
+      var req = 'http://localhost:8080/admin/add/' + this.pIdUser + '/' + pIdAdmin;
+      const _this = this;
+      console.log(req)
+      axios.post(req)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error){
+          console.log(error);
+        });
   }
 
   ionViewDidLoad() {
@@ -25,31 +51,6 @@ export class PageAddAdmin {
   }
   public Gopage_help_mesadmin(){
     this.navCtrl.push(PageHelpMesAdmin);
-
-  }
-
-  initializeItems() {
-    this.items = [
-      'CAF 13eme',
-      'Mairie 14eme',
-      'Mairie 5eme',
-      'Bar 15eme',
-    ]
-  }
-
-  getItems(ev: any) {
-    // Reset items back to all of the items
-    this.initializeItems();
-
-    // set val to the value of the searchbar
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
   }
 
 }

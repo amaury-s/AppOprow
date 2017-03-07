@@ -22,6 +22,7 @@ export class PageAffluence {
 
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
+  public dateLimit = this.date;//Forbid to go to an older date
   public adminId; // While we don't give it from the admin chosen
   public horaireOpti = 7//for the moment
   public horaireOptiString = "7h-8h";
@@ -90,7 +91,8 @@ export class PageAffluence {
   }
 
   public decreaseDate():void {
-  this.changeDate(new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()-1));
+    if(this.dateLimit < this.date)
+      this.changeDate(new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()-1));
   }
 
   public increaseDate():void {
@@ -111,14 +113,34 @@ export class PageAffluence {
     this.barChartData = clone;*/
     //this.presentAlert();
     //this.navCtrl.push(PageJyVais);
-    let date = this.date.getFullYear() + "-" + this.date.getMonth() + "-" + this.date.getDate() + "T" + horaire + ".10Z";
+    let date = this.date.setHours(horaire,0,0);
     console.log(date);
-    axios.post('http://localhost:8080/asks/add', {"adminId":this.adminId, "userId":1, "serviceId":serviceId, "arrivalTime":date, "endWaitingTIme":'2017-10-5 5:0:0',"departureTime":'2017-10-5T0:0:0.10Z',"dayOfWeek":this.date.getDay()})// we still have to change the dates
+    axios.post('http://localhost:8080/asks/add', {"adminId":this.adminId, "userId":1, "serviceId":serviceId, "arrivalTime":this.date.getTime(), "endWaitingTIme":'2017-10-5 5:0:0',"departureTime":'2017-10-5T0:0:0.10Z',"dayOfWeek":this.date.getDay()})// we still have to change the dates
       .then(function () {
       });
   }
-  public confirmIGo():void{
-
+  public confirmIGo(horaire, serviceId):void{
+    let horairePlus = parseInt(horaire) + 1;
+    let alert = this.alertCtrl.create({
+      title: 'Voulez vous vraiment venir à cet horaire ?',
+      message: 'Je viens entre ' + horaire + 'h et ' + horairePlus + 'h.',
+      buttons: [
+        {
+          text: 'Confirmer',
+          handler: () => {
+            console.log('Oui clicked');
+            this.iGo(horaire, serviceId)
+          }
+        },
+        {
+          text: 'Annuler',
+          handler: () => {
+            console.log('Annuler clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 

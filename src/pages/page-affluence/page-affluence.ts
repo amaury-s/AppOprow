@@ -22,6 +22,7 @@ export class PageAffluence {
 
   public dateString = giveDate(new Date());//for the display
   public date = new Date();//for the back (load the right char...)
+  public dateLimit = this.date;//Forbid to go to an older date
   public adminId; // While we don't give it from the admin chosen
   public horaireOpti = 7//for the moment
   public horaireOptiString = "7h-8h";
@@ -90,7 +91,8 @@ export class PageAffluence {
   }
 
   public decreaseDate():void {
-  this.changeDate(new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()-1));
+    if(this.dateLimit < this.date)
+      this.changeDate(new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate()-1));
   }
 
   public increaseDate():void {
@@ -103,7 +105,7 @@ export class PageAffluence {
     this.generateGraph(date);
   }
 
-  public iGo(horaire, serviceId):void {
+  public iGo():void {
     /*let data = this.barChartData[0].data;
     data[horaire-7]++;
     let clone = JSON.parse(JSON.stringify(this.barChartData));
@@ -111,11 +113,33 @@ export class PageAffluence {
     this.barChartData = clone;*/
     //this.presentAlert();
     //this.navCtrl.push(PageJyVais);
-    axios.post('http://localhost:8080/ask/add', {adminId:this.adminId, userId:1, serviceId:serviceId, arrivalTime:'2017-10-5T0:0:0.10Z', endWaitingTIme:'2017-10-5T0:0:0.10Z',departureTime:'2017-10-5T0:0:0.10Z',dayOfWeek:5})
+    let date = this.date.setHours(this.horaireChoose,0,0);
+    console.log(date);
+    axios.post('http://localhost:8080/asks/add', {"adminId":this.adminId, "userId":1, "serviceId":this.serviceChoose, "arrivalTime":this.date.getTime(), "endWaitingTIme":'2017-10-5 5:0:0',"departureTime":'2017-10-5T0:0:0.10Z',"dayOfWeek":this.date.getDay()})// we still have to change the dates
       .then(function () {
-        console.log("done")
       });
-    console.log('request done');
+  }
+  public confirmIGo():void{
+    let alert = this.alertCtrl.create({
+      title: 'Voulez vous vraiment venir à cet horaire ?',
+      message: 'Je viens entre ' + this.horaireChoose + 'h et ' + (parseInt(this.horaireChoose) + 1) + 'h.',
+      buttons: [
+        {
+          text: 'Confirmer',
+          handler: () => {
+            console.log('Oui clicked');
+            this.iGo()
+          }
+        },
+        {
+          text: 'Annuler',
+          handler: () => {
+            console.log('Annuler clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
   public generateGraph(date):void {//this function will have to find the data of the chart at the right date in the database
 
@@ -140,4 +164,3 @@ function giveDate(date):string{
   dateString = days[date.getDay()] + " " + date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
   return dateString;
 }
-

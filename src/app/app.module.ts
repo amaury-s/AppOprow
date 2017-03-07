@@ -12,6 +12,8 @@ import { PageHelpMesAdmin} from '../pages/page-help-mes-admin/page-help-mes-admi
 import { PageMesDocuments} from '../pages/page-mes-documents/page-mes-documents';
 import { PageMonQrcode } from '../pages/page-mon-qrcode/page-mon-qrcode';
 
+import { SearchPipe} from './pipes/searchPipe.pipe';
+
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 
@@ -26,7 +28,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     PageAddAdmin,
     PageHelpMesAdmin,
     PageMesDocuments,
-    PageMonQrcode
+    PageMonQrcode,
+    SearchPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp),

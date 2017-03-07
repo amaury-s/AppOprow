@@ -29,9 +29,13 @@
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
   </div>
-  <div id="date" class="center">
-    <button ion-button small (click)="decreaseDate()"><ion-icon name="arrow-back"></ion-icon></button><strong> {{dateString}} </strong><button ion-button small (click)="increaseDate()"><ion-icon name="arrow-forward"></ion-icon></button>
-  </div>
+  <ion-grid>
+    <ion-row id="date">
+      <ion-col width-20><button ion-button small (click)="decreaseDate()"><ion-icon name="arrow-back"></ion-icon></button></ion-col>
+      <ion-col width-60><strong> {{dateString}} </strong></ion-col>
+      <ion-col width-20><button ion-button small (click)="increaseDate()"><ion-icon name="arrow-forward"></ion-icon></button></ion-col>
+    </ion-row>
+  </ion-grid>
 
   <div class="center under">
     <p class="horaire">Horaire Optimal : <strong>{{horaireOptiString}}</strong></p>
@@ -58,12 +62,12 @@
     <ion-item>
       <ion-label>Service</ion-label>
       <ion-select [(ngModel)]="serviceChoose">
-        <ion-option *ngFor="let service of admin.listOfServices">{{service.serviceName}}</ion-option>
+        <ion-option *ngFor="let service of admin.listOfServices" value="{{service.serviceId}}">{{service.serviceName}}</ion-option>
       </ion-select>
     </ion-item>
 
     <div class="center">
-      <button ion-button block large (click)="iGo(horaireChoose,serviceChoose)">J'y vais !</button>
+      <button ion-button block large (click)="confirmIGo()">J'y vais !</button>
     </div>
   </div>
 

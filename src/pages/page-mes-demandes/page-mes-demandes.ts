@@ -18,6 +18,7 @@ export class PageMesDemandes {
 
 
   public demandes = [];
+  public pIdUser = 1;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
 
@@ -36,7 +37,22 @@ export class PageMesDemandes {
     this.navCtrl.push(PageHelpMesAdmin);
 
   }
-  public confirm(){
+  public delete_ask(pIdAsk){
+  console.log('delete ask');
+  console.log(pIdAsk);
+  var req = 'http://localhost:8080/asks/delete/' + this.pIdUser + '/' + pIdAsk;
+  const _this = this;
+  console.log(req)
+  axios.post(req)
+    .then(function (response) {
+      console.log(response);
+      _this.demandes.splice(pIdAsk, 1);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  public confirm(pIdAsk){
       let alert = this.alertCtrl.create({
         message: 'Voulez vous vraiment supprimer votre demande ?',
         buttons: [
@@ -46,7 +62,7 @@ export class PageMesDemandes {
           {
             text: 'Oui',
             handler: () => {
-              console.log('Oui clicked');
+              this.delete_ask(pIdAsk);
             }
           },
           {
@@ -58,7 +74,9 @@ export class PageMesDemandes {
         ]
       });
       alert.present();
-    }
+  }
+
+
   ionViewDidLoad(){
     console.log('ionViewDidLoad PageMesDemandesPage');
   }

@@ -15,10 +15,9 @@ import axios from 'axios'
   templateUrl: 'page-add-admin.html'
 })
 export class PageAddAdmin {
-  private searchQuery: string = '';
-  private items: string[];
-  public pIdUser = 1;
-  public admins = [];
+  private admins: any[] = [];
+  private search: string = '';
+  private pIdUser: number = 1;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
@@ -30,27 +29,30 @@ export class PageAddAdmin {
       .catch(function (error) {
         console.log(error);
       });
+
   }
 
   public Add_Favorite_Admin(pIdAdmin){
-      console.log('add favorite admin');
-      var req = 'http://localhost:8080/admin/add/' + this.pIdUser + '/' + pIdAdmin;
-      const _this = this;
-      console.log(req)
-      axios.post(req)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error){
-          console.log(error);
-        });
+    console.log('add favorite admin');
+    var req = 'http://localhost:8080/admin/add/' + this.pIdUser + '/' + pIdAdmin;
+    const _this = this;
+    console.log(req)
+    axios.post(req)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error){
+        console.log(error);
+      });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageAddAdminPage');
   }
+
   public Gopage_help_mesadmin(){
     this.navCtrl.push(PageHelpMesAdmin);
+
   }
 
 }

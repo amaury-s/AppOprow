@@ -32,8 +32,7 @@ export class PageMesAdmin {
       .catch(function (error) {
         console.log(error);
       });
-
-
+    
   }
   public delete_admin(pIndex, pIdAdmin){
     console.log('delete admin');
